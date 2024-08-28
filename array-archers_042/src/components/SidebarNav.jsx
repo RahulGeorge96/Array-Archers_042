@@ -22,8 +22,13 @@ const SidebarNav = () => {
           </Text>
         </Link>
         <Link to="/gloves">
-          <Text fontSize="lg" color="white">
+          <Text fontSize="lg" color="white" mr={4}>
             Gloves
+          </Text>
+        </Link>
+        <Link to="/cart">
+          <Text fontSize="lg" color="white">
+            Cart
           </Text>
         </Link>
       </Flex>
