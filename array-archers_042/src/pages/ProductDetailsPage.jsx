@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -77,7 +68,24 @@ const ProductDetailsPage = () => {
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${product.name} to cart.`);
+    if (!product) return;
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log(cart);
+
+    const existingProductIndex = cart.findIndex(
+      (item) => item.name === product.name
+    );
+
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity += quantity;
+    } else {
+      cart.push({ ...product, quantity });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(`Added ${quantity} of ${product.name} to cart.`);
   };
 
   return (
@@ -153,7 +161,7 @@ const ProductDetailsPage = () => {
                 mr={2}
               />
               <Text fontSize="lg" color="white">
-              {quantity}
+                {quantity}
               </Text>
               <IconButton
                 aria-label="Increase quantity"
@@ -181,7 +189,3 @@ const ProductDetailsPage = () => {
 };
 
 export default ProductDetailsPage;
-
-
-
-
