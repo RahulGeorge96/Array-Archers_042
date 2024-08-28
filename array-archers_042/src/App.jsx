@@ -1,4 +1,9 @@
 
+import { useState } from 'react'
+import './App.css'
+import { NavBar } from './components/navBar'
+
+
 
 
 import React from "react";
@@ -9,13 +14,17 @@ import BikesPage from "./pages/BikesPage";
 
 const App = () => {
   return (
+    <>
+    <NavBar/>
     <ChakraProvider>
       <Box minHeight="100vh" bg="gray.100">
         <AllRoutes />
       </Box>
     </ChakraProvider>
-  );
-};
+    </>
+  )
+}
+
 
 export default App;
 
@@ -24,23 +33,3 @@ export default App;
 
 
 
-
-
-
-
-
-
-
-// import { useState } from 'react'
-// import './App.css'
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//     </>
-//   )
-// }
-
-// export default App
