@@ -1,0 +1,149 @@
+#herosectioncontainer{
+  max-width: 1280px;
+  margin: auto;
+  padding: 10px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.textformain {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  color: white;
+  z-index: -1;
+  white-space: nowrap;
+}
+
+.textformainsp{
+  font-size: 130px;
+  color: #404040;
+}
+
+@media (max-width: 768px) {
+  #herosectioncontainer {
+    overflow: hidden;
+  }
+
+  .textformainsp{
+    font-size: 15vw;
+  }
+}
+
+
+.bikeimage{
+  max-width: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.bikeimagess{
+  width: 100%;
+}
+
+.roundimage{
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.roundimage>img{
+  height: 20px;
+  width: 80px;
+}
+
+
+.forthefirsttextandp{
+  max-width: 1280px;
+  margin: auto;
+  padding: 10px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+@media(max-width:550px){
+  .forthefirsttextandp{
+    justify-content: center;
+    gap: 30px;
+  }
+}
+
+.forthefirsttextandp>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.forthefirsttextandp>div p{
+  color: gray;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#purchasebtn{
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 40px;
+  border-radius: 50px;
+  background-color: #fb6600;
+  cursor: pointer;
+}
+
+/* ------------------------- */
+
+.forthesecondtextandp{
+  max-width: 1280px;
+  margin: auto;
+  padding: 10px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+@media(max-width:550px){
+  .forthesecondtextandp{
+    justify-content: center;
+    gap: 30px;
+  }
+}
+
+.forthesecondtextandp>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.forthesecondtextandp>div p{
+  color: gray;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+#estimatebtn{
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 50px;
+  border: 1px solid white;
+  cursor: pointer;
+}
