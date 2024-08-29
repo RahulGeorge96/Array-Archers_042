@@ -1,0 +1,36 @@
+.videopagecontainer{
+  max-width: 1360px;
+  margin: auto;
+  padding: 30px 20px;
+  height: 560px;
+  margin-top: 40px;
+}
+
+.videoiframe{
+  height: 500px;
+}
+
+@media(max-width:426px){
+  .videopagecontainer{
+    height: 340px;
+  }
+  .videoiframe{
+    height: 300px;
+  }
+}
+
+.forscheduletest{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.forscheduletest>p{
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 40px;
+  border-radius: 50px;
+  background-color: #fb6600;
+  cursor: pointer;
+}

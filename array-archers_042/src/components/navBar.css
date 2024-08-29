@@ -1,0 +1,247 @@
+ /* ---------------------top most  navbar------------------------  */
+
+ .maincontainer {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: backdrop-filter 0.3s ease; 
+}
+
+.maincontainer.blur {
+  backdrop-filter: blur(10px);
+}
+
+
+.navbarcontainer{
+  max-width: 1360px;
+  margin: auto;
+  padding: 5px 10px;
+  color: white;
+}
+
+.firstnavbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.firstnavbar>div:nth-of-type(2){
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 3px;
+}
+
+.bordertype{
+  height: 2px;
+  width: 10px;
+  background-color: orangered;
+}
+
+.firstnavbar>div:nth-of-type(3){
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbarlogo{
+  height: 60px;
+  width: 80px;
+  cursor: pointer;
+}
+
+.linksofcomp>p{
+  font-size: 14px;
+  padding: 3px 10px;
+  border: 1px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+ /* ---------------------top most navbar------------------------  */
+
+
+  /* ---------------------top most border of navbar------------------------  */
+
+.bottomborder{
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+}
+
+
+ /* ---------------------top most border of navbar------------------------  */
+
+
+  /* ---------------------top second navbar------------------------  */
+
+  .secondnavbar{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+
+  .secondnavbar>div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .secondnavbar>div>p{
+    cursor: pointer;
+  }
+
+
+    /* ----------------------------bergermenu top------------------------------------- */
+
+    #bergmenu{
+      display: none;
+    }
+  
+    .bergmenu>p{
+      font-size: 25px;
+      cursor: pointer;
+    }
+  
+    #productsccc{
+      display: none;
+    }
+  
+    @media (max-width: 767px){
+      #bergmenu{
+        display: block;
+        width: 100%;
+      }
+      #bergmenu>p{
+        text-align: end;
+      }
+      #categoryofproduct{
+        display: none;
+      }
+      #contactbutt{
+        display: none;
+      }
+      .navbarlogo{
+        height: 50px;
+        width: 70px;
+        cursor: pointer;
+      }
+      #productsccc{
+        display: block;
+        color: white;
+      }
+    }
+
+
+
+    /* ----------------------------bergermenu------------------------------------- */
+
+
+  /* ----------------------------bergermenu------------------------------------- */
+
+  #bergmenutop{
+    display: none;
+  }
+
+  .bergmenutop>p{
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px){
+    #bergmenutop{
+      display: block;
+      width: 100%;
+    }
+    #bergmenutop>p{
+      text-align: end;
+    }
+    #linksofcomp{
+      display: none;
+    }
+  }
+
+  /* -------------------- top navbar sidebar------------------------  */
+
+  #closethetopsidebar{
+    display: none;
+  }
+
+  #openthetopisebar{
+    width: 40%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    background-color: #313131;
+  }
+
+
+  #openthetopisebar>img{
+    margin-top: 15px;
+  }
+
+  #openthetopisebar>p{
+    border-bottom: 2px solid white;
+    width: 80%;
+    padding: 0px 0px 15px 0px;
+    text-align: center;
+  }
+
+
+  #openthetopisebar>p:nth-of-type(1){
+    margin-top: 20px;
+  }
+
+
+    /* -------------------- top navbar sidebar------------------------  */
+
+
+
+  /* ---------------------top second navbar------------------------  */
+
+
+    /* ---------------------second top navbar sidebar------------------------  */
+
+    #closethesidebar{
+      display: none;
+    }
+
+    #opentheisebar{
+      width: 40%;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      color: white;
+      background-color: #313131;
+    }
+
+
+    #opentheisebar>img{
+      margin-top: 15px;
+    }
+
+    #opentheisebar>p{
+      border-bottom: 2px solid white;
+      width: 80%;
+      padding: 0px 0px 15px 0px;
+      text-align: center;
+    }
+
+
+    #opentheisebar>p:nth-of-type(1){
+      margin-top: 20px;
+    }
