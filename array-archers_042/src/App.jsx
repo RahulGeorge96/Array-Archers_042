@@ -4,17 +4,20 @@ import { Footer } from './components/landingpage/footer'
 import { LoginPage } from './components/loginPage'
 import { NavBar } from './components/navBar'
 import { SignupPage } from './components/signupPage'
-
+import {ChakraProvider} from "@chakra-ui/react";
 function App() {
 
   return (
     <>
-    <NavBar/>
-    <div className='marginfromtop'></div>
-    <LandingPage/>
-    <Footer/>
+      <NavBar />
+      <div className="marginfromtop"></div>
+    
+        <LandingPage />
+     
+  
+      <Footer />
     </>
-  )
+  );
 }
 
 export default App
