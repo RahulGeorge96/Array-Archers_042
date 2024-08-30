@@ -2,7 +2,8 @@ import "./navBar.css"
 import logoimage from "../assets/brandlogo.png"
 import { useState , useEffect} from "react"
 import { useNavigate } from "react-router-dom"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { userLoggedin } from "../redux/actions"
 
 export const NavBar = ()=>{
   let [opened, setOpened] = useState(false)
@@ -10,6 +11,7 @@ export const NavBar = ()=>{
   const [isBlurred, setIsBlurred] = useState(false);
   let navigate = useNavigate()
   let userlogged = useSelector((state)=>state.isLoggedIn)
+  let dispatch = useDispatch()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +34,6 @@ export const NavBar = ()=>{
 
   function handleCart (){
     navigate("/cart")
-    setToppened(!topopened)
-  }
-
-  function handleSignin (){
-    navigate("/login")
     setToppened(!topopened)
   }
 
@@ -64,6 +61,16 @@ export const NavBar = ()=>{
     navigate("/")
     setOpened(!opened)
   }
+
+  function handleSignout(){
+    localStorage.removeItem("currloginuser")
+    dispatch(userLoggedin())
+  }
+
+  function handleSignin (){
+    !userlogged ? navigate("/login") : handleSignout()
+    setToppened(!topopened)
+  }
   
   return (
     <div className={`maincontainer ${isBlurred ? 'blur' : ''}`}>
@@ -81,7 +88,7 @@ export const NavBar = ()=>{
           <div id="linksofcomp" className="linksofcomp">
             <p>Wishlist</p>
             <p onClick={()=>{navigate("/cart")}}>Cart</p>
-            <p onClick={()=>{navigate("/login")}}>{userlogged ? "Sign Out" : "Sign in"}</p>
+            <p onClick={()=>{ !userlogged ? navigate("/login") : handleSignout()}}>{userlogged ? "Sign Out" : "Sign in"}</p>
           </div>
 
           <div id="bergmenutop" className="bergmenutop">
@@ -92,7 +99,7 @@ export const NavBar = ()=>{
             <img onClick={handleImageClick} src={logoimage} className="navbarlogo" />
             <p onClick={()=>{setToppened(!topopened)}} >Wishlist</p>
             <p onClick={handleCart} >Cart</p>
-            <p onClick={handleSignin} >Sign in</p>
+            <p onClick={handleSignin} >{userlogged ? "Sign Out" : "Sign in"}</p>
           </div>
 
         </div>
