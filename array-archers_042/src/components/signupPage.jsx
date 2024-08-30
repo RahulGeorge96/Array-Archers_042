@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 export const SignupPage = ()=>{
-
+  let navigate = useNavigate();
   const [email,setemail] = useState('');
   const [username,setusername] = useState('');
 
@@ -26,8 +26,32 @@ export const SignupPage = ()=>{
               username:data.user.displayName,
               emailID:data.user.email
             }
-
-            axios.post("https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user.json",userDetails);
+            axios.get("https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user.json")
+            .then((res)=>{
+              let filterdata = Object.entries(res.data).filter(([key, e])=>{
+                return data.user.email == e.emailID
+              })
+              
+              if(filterdata.length>0){
+                alert("user already exist");
+                navigate("/login");              
+              }
+              else{
+                axios.post("https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user.json",userDetails)
+                .then((res)=>{
+                  alert("signup successfully");
+                  navigate("/login");
+                })
+                .catch((e)=>{
+                  alert("sigin failed");
+                })
+              }
+              
+            })
+           
+            
+           
+            
             
             // localStorage.setItem("email",data.user.email)
         })
@@ -37,7 +61,7 @@ export const SignupPage = ()=>{
         // setValue(localStorage.getItem('email'))
     })
 
-  let navigate = useNavigate();
+
 
 
   return (
