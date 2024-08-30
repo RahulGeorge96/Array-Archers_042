@@ -1,14 +1,139 @@
-.marginfromtop{
+.marginfromtop {
   margin-top: 150px;
 }
 
-.slick-prev, .slick-next {
-  top: 85px; 
+.slick-prev,
+.slick-next {
+  top: 85px;
   z-index: 1;
 }
-
 
 .my-slider .slick-dots {
   bottom: -40px;
 }
 
+/*start:  styles for about page */
+
+/* Container to restrict max width */
+.AboutPageContainer {
+  max-width: 1360px;
+  margin: 0 auto; /* Center the container */
+  padding: 0 15px; /* Optional padding for spacing */
+}
+
+.About_grid {
+  display: grid;
+  grid-template-areas:
+    "a1 a1 a2 a3"
+    "a1 a1 a4 a5";
+  grid-template-columns: repeat(4, 1fr); /* Ensures equal column widths */
+
+  width: 100%;
+  max-width: 100%; /* Ensures the grid doesn't exceed the container's width */
+  height: auto; /* Adjust height to fit content */
+  gap: 1vw;
+  margin: auto;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  padding-right: 1vw;
+  background-color: #414141;
+  overflow: hidden; /* Prevent content overflow */
+  margin-top: 8vmin;
+}
+
+.About_grid > div {
+  width: 100%; /* Full width of the grid cell */
+  color: white;
+  overflow-wrap: break-word; /* Prevent text overflow */
+}
+
+.About_grid > div:nth-child(1) {
+  grid-area: a1;
+}
+
+.About_grid > div:nth-child(2) {
+  grid-area: a2;
+}
+
+.About_grid > div:nth-child(3) {
+  grid-area: a3;
+}
+
+.About_grid > div:nth-child(4) {
+  grid-area: a4;
+}
+
+.About_grid > div:nth-child(5) {
+  grid-area: a5;
+}
+
+.About_grid_div {
+  height: 100%; /* Allow divs to grow with content */
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image covers its container */
+}
+
+.About_grid_div > p > p {
+  font-size: 10px;
+  padding: 2px 2px;
+  border: 1px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 3vw;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .About_grid {
+    grid-template-areas:
+      "a1 a1"
+      "a2 a3"
+      "a4 a5";
+    grid-template-columns: repeat(2, 1fr); /* Two-column layout */
+  }
+}
+
+@media (max-width: 768px) {
+  .About_grid {
+    grid-template-areas:
+      "a1"
+      "a2"
+      "a3"
+      "a4"
+      "a5";
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 2vw;
+    padding: 4vw 2vw;
+  }
+
+  .About_grid > div {
+    width: 100%; /* Full width for each item */
+  }
+
+  .About_grid_div > p > p {
+    font-size: 12px; /* Adjust text size for readability */
+    margin-top: 5vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .About_grid {
+    gap: 2vw;
+    padding: 2vw;
+  }
+
+  .About_grid > div {
+    margin-bottom: 2vw; /* Add spacing between stacked items */
+  }
+
+  .About_grid_div > p > p {
+    font-size: 14px; /* Further adjust text size for small screens */
+  }
+}
+
+/*end:  styles for about page */
