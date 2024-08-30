@@ -51,7 +51,7 @@
   right: -50px;
   bottom: -100px;
 }
-form{
+#form{
   height: 450px;
   width: 380px;
   background-color: rgba(255,255,255,0.13);
@@ -68,7 +68,7 @@ form{
 }
 
 @media (max-width: 430px){
-  form{
+  #form{
     width: 350px;
     height: 500px;
   }
@@ -108,7 +108,7 @@ input{
 ::placeholder{
   color: #e5e5e5;
 }
-button{
+#loginbtnn{
   margin-top: 30px;
   width: 100%;
   background-color: #ffffff;

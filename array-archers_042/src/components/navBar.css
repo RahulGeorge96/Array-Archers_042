@@ -127,12 +127,20 @@
       }
       .navbarlogo{
         height: 50px;
-        width: 70px;
+        width: 90px;
         cursor: pointer;
       }
       #productsccc{
         display: block;
         color: white;
+      }
+    }
+
+    @media (max-width: 767px){
+      .navbarlogo{
+        height: 30px;
+        width: 60px;
+        cursor: pointer;
       }
     }
 

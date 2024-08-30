@@ -1,28 +1,34 @@
-
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import React, { useEffect, useState } from "react";
-import { Box, Select, SimpleGrid, Heading, Flex } from "@chakra-ui/react";
+import { Box, Select, SimpleGrid, Heading, Flex,Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import ProductCard from "../components/ProductCard";
+import "../App.css";
 
 const BikesPage = () => {
   const [bikes, setBikes] = useState([]);
   const [filteredBikes, setFilteredBikes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState("None");
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/bikes.json"
-      );
-      const data = await response.json();
-      setBikes(data);
-      setFilteredBikes(data);
+      try {
+        const response = await fetch(
+          "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/bikes.json"
+        );
+        const data = await response.json();
+        setBikes(data);
+        setFilteredBikes(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching bikes data:", error);
+        setLoading(false);
+      }
+      
     };
     fetchData();
   }, []);
@@ -56,15 +62,17 @@ const BikesPage = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5, // Show 5 images at a time
+    slidesToShow: 4, // Show 4 images at a time
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
+    autoplay: true,  // Enables automatic sliding
+    autoplaySpeed: 2000, 
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4, // Show 4 images on medium screens
+          slidesToShow: 3, // Show 3 images on medium screens
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -72,7 +80,7 @@ const BikesPage = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2, // Show 2 images on small screens
+          slidesToShow: 1, // Show 1 images on small screens
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -81,16 +89,24 @@ const BikesPage = () => {
   };
 
   return (
-    <Box w="100%" className="backgroundchange">
-      <Box p={4} maxWidth="1360px" margin="0 auto">
+    // <ChakraProvider>
+    <Box  w="100%" className="backgroundchange">
+      <Box  maxWidth="1360px" margin="0 auto" style={{padding:"0px 30px"}}>
         <Heading mb={4} color="white">
           Bikes
         </Heading>
 
+        {loading ? (
+          <Flex justifyContent="center" alignItems="center" height="50vh">
+          <Spinner size="xl" color="white" />
+          </Flex>
+        ) : (
+          <>
+
         {/* Slider for all bike images */}
-        <Slider {...settings}>
+        <Slider {...settings} className="my-slider">
           {bikes.map((bike) => (
-            <Box key={bike.id} p={1} style={{ margin: "0 5px" }}>
+            <Box  key={bike.id} p={4} style={{ margin: "0 5px" }}>
               <Link to={`/products/bikes/${bike.id}`}>
                 <img
                   src={bike.imageurl}
@@ -111,7 +127,7 @@ const BikesPage = () => {
         <Flex
           mt={8}
           mb={4}
-          ml={12}
+          ml={{ base: 1, lg: 14 }}
           direction={{ base: "column", sm: "row" }}
           align="center"
           justify="flex-start"
@@ -162,7 +178,7 @@ const BikesPage = () => {
           </Select>
         </Flex>
 
-        <SimpleGrid columns={[1, 2, 3]} spacing={4}>
+        <SimpleGrid columns={[1, 2, 3]} spacing={10}>
           {filteredBikes.map((bike) => (
             <ProductCard
               key={bike.id}
@@ -171,8 +187,11 @@ const BikesPage = () => {
             />
           ))}
         </SimpleGrid>
+        </>
+        )}
       </Box>
     </Box>
+    // </ChakraProvider>
   );
 };
 

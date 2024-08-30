@@ -17,8 +17,9 @@ const ProductCard = ({ product, productName }) => {
         display="flex"
         flexDirection="column"
         justifyContent="center"
-        _hover={{ borderColor: "grey", borderWidth: "2px" }} 
-        paddingTop="10px"
+        boxShadow={"0 0 8px grey"}
+        _hover={{ boxShadow: "0 0 8px grey" }} 
+        paddingTop="15px"
       >
         <Image
           src={product.imageurl}

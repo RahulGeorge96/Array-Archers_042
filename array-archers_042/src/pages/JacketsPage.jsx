@@ -1,11 +1,8 @@
-
-
-
+import "../App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import React, { useEffect, useState } from "react";
-import { Box, SimpleGrid, Heading, Spinner } from "@chakra-ui/react";
+import { Box, SimpleGrid, Heading, Spinner, Flex } from "@chakra-ui/react";
 import Slider from "react-slick";
 import ProductCard from "../components/ProductCard";
 import { Link } from "react-router-dom";
@@ -37,15 +34,17 @@ const JacketsPage = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5, // Show 5 images at a time
+    slidesToShow: 4, // Show 5 images at a time
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
+    autoplay: true,  // Enables automatic sliding
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4, // Show 4 images on medium screens
+          slidesToShow: 3, // Show 4 images on medium screens
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -53,7 +52,7 @@ const JacketsPage = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2, // Show 2 images on small screens
+          slidesToShow: 1, // Show 2 images on small screens
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -63,19 +62,21 @@ const JacketsPage = () => {
 
   return (
     <Box w="100%" className="backgroundchange">
-      <Box p={4} maxWidth="1360px" margin="auto" width="100vw">
+      <Box style={{padding:"0px 30px"}} maxWidth="1360px" margin="0 auto" width="100vw">
         <Heading mb={4} color="white">
           Jackets
         </Heading>
 
         {loading ? (
+          <Flex justifyContent="center" alignItems="center" height="50vh">
           <Spinner size="xl" color="white" />
+          </Flex>
         ) : (
           <>
             {/* Slider for all jacket images */}
-            <Slider {...settings}>
+            <Slider {...settings} className="my-slider">
               {jackets.map((jacket) => (
-                <Box key={jacket.id} p={1} style={{ margin: "0 5px" }}>
+                <Box key={jacket.id} p={4} style={{ margin: "0 5px" }}>
                   <Link to={`/products/jackets/${jacket.id}`}>
                     <img
                       src={jacket.imageurl}
@@ -92,7 +93,7 @@ const JacketsPage = () => {
               ))}
             </Slider>
 
-            <SimpleGrid columns={[1, 2, 3]} spacing={4} mt={8}>
+            <SimpleGrid columns={[1, 2, 3]} spacing={10} mt={8}>
               {jackets.map((jacket) => (
                 <ProductCard
                   key={jacket.id}

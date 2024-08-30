@@ -1,20 +1,14 @@
+import { AllRoutes } from './allRoutes'
 import './App.css'
-import { LandingPage } from './components/landingPage'
 import { Footer } from './components/landingpage/footer'
-import { LoginPage } from './components/loginPage'
 import { NavBar } from './components/navBar'
-import { SignupPage } from './components/signupPage'
-import {ChakraProvider} from "@chakra-ui/react";
 function App() {
 
   return (
     <>
       <NavBar />
       <div className="marginfromtop"></div>
-    
-        <LandingPage />
-     
-  
+      <AllRoutes/>
       <Footer />
     </>
   );

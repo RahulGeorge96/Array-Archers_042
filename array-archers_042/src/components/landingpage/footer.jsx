@@ -63,9 +63,9 @@ export const Footer = ()=>{
 
       </div>
       <div className="footercontainersecond">
-          <p><i class="ri-twitter-fill"></i></p>
-          <p><i class="ri-youtube-fill"></i></p>
-          <p><i class="ri-pinterest-fill"></i></p>
+          <p><i className="ri-twitter-fill"></i></p>
+          <p><i className="ri-youtube-fill"></i></p>
+          <p><i className="ri-pinterest-fill"></i></p>
       </div>
       <div className="footercontainerthird">
           <div>
