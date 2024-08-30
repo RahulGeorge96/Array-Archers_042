@@ -1,8 +1,10 @@
 import herobikeimageImage from "../../assets/herobikeimage.png"
 import grossImage from "../../assets/360gross.png"
 import "./herosection.css"
+import { useNavigate } from "react-router-dom"
 
 export const HeroSection = ()=>{
+  let navigate = useNavigate()
   return (
     <>
     <div className="herosectioncontainer" id="herosectioncontainer">
@@ -35,7 +37,7 @@ export const HeroSection = ()=>{
         <p>VIVID BLACK</p>
       </div>
       <div>
-        <p id="purchasebtn">PURCHASE</p>
+        <p onClick={()=>{navigate("/products/bikes/1")}} id="purchasebtn">PURCHASE</p>
       </div>
     </div>
 

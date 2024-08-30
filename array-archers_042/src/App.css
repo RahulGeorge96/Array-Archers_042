@@ -1,3 +1,14 @@
 .marginfromtop{
   margin-top: 150px;
 }
+
+.slick-prev, .slick-next {
+  top: 85px; 
+  z-index: 1;
+}
+
+
+.my-slider .slick-dots {
+  bottom: -40px;
+}
+

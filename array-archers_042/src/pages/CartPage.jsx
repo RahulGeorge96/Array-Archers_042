@@ -4,7 +4,6 @@ import {
   Heading,
   Text,
   Flex,
-  Stack,
   Button,
   Image,
   IconButton,
@@ -24,7 +23,7 @@ export const CartPage = () => {
       0
     );
     setTotal(totalSum);
-  }, [cartItems]);
+  }, []); // Removed cartItems from dependency array
 
   const handleQuantityChange = (index, change) => {
     const updatedItems = [...cartItems];
@@ -34,6 +33,13 @@ export const CartPage = () => {
     );
     setCartItems(updatedItems);
     localStorage.setItem("cart", JSON.stringify(updatedItems));
+    
+    // Recalculate the total when the quantity changes
+    const totalSum = updatedItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    setTotal(totalSum);
   };
 
   const handleRemoveFromCart = (index) => {
@@ -41,74 +47,112 @@ export const CartPage = () => {
     updatedItems.splice(index, 1);
     setCartItems(updatedItems);
     localStorage.setItem("cart", JSON.stringify(updatedItems));
+    
+    // Recalculate the total when an item is removed
+    const totalSum = updatedItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    setTotal(totalSum);
   };
 
   return (
     <Box w="100%" className="backgroundchange">
-      <Box p={4} backgroundColor="#303030" maxWidth="1360px" margin="0 auto">
-        <Heading mb={4} color="white">
+      <Box   padding="0px 30px" backgroundColor="#303030" maxWidth="1360px" margin="0 auto" borderRadius="md">
+        <Heading mb={6} color="white" textAlign="center">
           Your Cart
         </Heading>
         {cartItems.length > 0 ? (
-          <Flex
-            direction={{ base: "column", md: "row" }}
-            gap={4}
-            justify="space-around"
+          <Flex 
+            direction={{ base: "column", lg: "row" }}
+            gap="10px"
+
+            sx={{
+              "@media screen and (min-width: 970px)": {
+                flexDirection: "row",  // Apply row direction after 1100px
+              },
+            }}
+            // justify="space-between"
           >
-            <Box mb={4} margin={"auto"}>
+            <Box  flex="1"  >
               {cartItems.map((item, index) => (
-                <Flex
-                  key={item.id}
-                  direction={{ base: "row", md: "row" }}
-                  w={[20, 500]}
-                  h={[600, 200]}
+                <Flex boxShadow={"0 4px 8px rgba(0, 0, 0, 0.8)" 
+
+
+                } 
+                  key={index}
+                  direction={{ base: "column", md: "row" }}
                   align="center"
-                  justify="space-around"
-                  mb={4}
-                  p={4}
+                  gap="10px"
+                  // justify="space-between"
+                  mb={6}
+                  p={7}
                   backgroundColor="#3e3e3e"
                   borderRadius="md"
-                  // border={"1px solid white"}
-                  boxSizing={"border-box"}
                 >
                   <Image
                     src={item.imageurl}
                     alt={item.name}
-                    width={{ base: "30%", md: "40%" }}
+                    width={{ base: "60%", md: "30%" }}
                     objectFit="cover"
+                    mb={{ base: 4, md: 0 }}
+                    borderRadius="md"
                   />
-                  <Box flex="1" p={4}>
-                    <Heading size="md" color="white">
+                  <Box flex="1" padding="0px 20px">
+                    <Text
+                      fontWeight="600"
+                      color={"white"}
+                      fontSize="22px"
+                      letterSpacing="1px"
+                    >
                       {item.name}
-                    </Heading>
-                    <Text fontSize="lg" color="white">
-                      <strong>Price:</strong> ₹{item.price}
                     </Text>
-                    <Text fontSize="lg" color="white">
-                      <strong>Quantity:</strong> {item.quantity}
+                    <Text fontWeight={500} fontSize="lg" color="white" letterSpacing=".5px">
+                      Price : <span style={{ color: 'gray' , fontWeight:"500", fontSize:"18px", marginLeft:"45px"}}>₹{item.price}</span>
                     </Text>
-                    <Flex mt={2} align="center">
+                    <Text fontWeight={500} fontSize="lg" color="white" letterSpacing=".5px">
+                      <strong>Quantity : </strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"18px", marginLeft:"10px"}}>{item.quantity}</span>
+                    </Text>
+                    <Flex mt={-3} align="center">
                       <IconButton
                         aria-label="Decrease quantity"
                         icon={<MinusIcon />}
                         onClick={() => handleQuantityChange(index, -1)}
-                        mr={2}
-                        zIndex={0}
+                        mr={3}
+                        size="sm"
+                        width="75px"
                       />
-                      <Text fontSize="lg" color="white">
-                        {item.quantity}
-                      </Text>
+                      <Flex align="center" justify="center">
+                        <Text fontSize="lg" marginTop="29px" color="white">
+                          {item.quantity}
+                        </Text>
+                      </Flex>
                       <IconButton
                         aria-label="Increase quantity"
                         icon={<AddIcon />}
                         onClick={() => handleQuantityChange(index, 1)}
-                        ml={2}
+                        ml={3}
+                        size="sm"
+                        width="75px"
                       />
                     </Flex>
                     <Button
                       mt={4}
-                      bg={"#fa6700"}
+                      bg="#fb6600"
                       onClick={() => handleRemoveFromCart(index)}
+                      width="200px"
+                      color="white"
+                      border="none"
+                      borderRadius="20px"
+                      _hover={{
+                        bg: "#e55d00",
+                        transform: "scale(1.05)",
+                        boxShadow: "md",
+                      }}
+                      _active={{
+                        bg: "#d95300",
+                        transform: "scale(1.02)",
+                      }}
                     >
                       Remove
                     </Button>
@@ -116,10 +160,12 @@ export const CartPage = () => {
                 </Flex>
               ))}
             </Box>
-            <Box>{<CheckoutCard total={total} />}</Box>
+            <Box flex="0.3">
+              <CheckoutCard total={total} />
+            </Box>
           </Flex>
         ) : (
-          <Text color="white">Your cart is empty</Text>
+          <Text color="white" textAlign="center">Your cart is empty</Text>
         )}
       </Box>
     </Box>
