@@ -1,7 +1,7 @@
 import { USERLOGGEDIN } from "./actions";
 
 export const initstate = {
-  isLoggedIn : false
+  isLoggedIn : localStorage.getItem("currloginuser") ? true : false
 }
 
 export function Reducer (state = initstate, action){

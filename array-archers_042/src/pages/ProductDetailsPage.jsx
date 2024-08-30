@@ -72,7 +72,6 @@ const ProductDetailsPage = () => {
     if (!product) return;
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log(cart);
 
     const existingProductIndex = cart.findIndex(
       (item) => item.name === product.name
