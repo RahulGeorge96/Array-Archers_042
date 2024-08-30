@@ -1,14 +1,76 @@
 import { useNavigate } from "react-router-dom"
 import "./signupPage.css"
+import  { useEffect, useState } from "react";
+import {auth,provider} from "./config";
+import {signInWithPopup,} from "firebase/auth";
+import axios from "axios";
+
+
 
 export const SignupPage = ()=>{
-  let navigate = useNavigate()
+  let navigate = useNavigate();
+  const [email,setemail] = useState('');
+  const [username,setusername] = useState('');
+
+    const handleClickGoogle =()=>{
+
+
+      
+
+        signInWithPopup(auth,provider).then((data)=>{
+
+            setemail(data.user.email);
+            setusername(data.user.displayName);
+
+            let userDetails = {
+              username:data.user.displayName,
+              emailID:data.user.email
+            }
+            axios.get("https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user.json")
+            .then((res)=>{
+              let filterdata = Object.entries(res.data).filter(([key, e])=>{
+                return data.user.email == e.emailID
+              })
+              
+              if(filterdata.length>0){
+                alert("user already exist");
+                navigate("/login");              
+              }
+              else{
+                axios.post("https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user.json",userDetails)
+                .then((res)=>{
+                  alert("signup successfully");
+                  navigate("/login");
+                })
+                .catch((e)=>{
+                  alert("sigin failed");
+                })
+              }
+              
+            })
+           
+            
+           
+            
+            
+            // localStorage.setItem("email",data.user.email)
+        })
+    }
+
+    useEffect(()=>{
+        // setValue(localStorage.getItem('email'))
+    })
+
+
+
+
   return (
     <div className="loginpagecom">
         <div className="background">
           <div className="shape" />
           <div className="shape" />
         </div>
+
         <form>
           <h3>Sign up Here</h3>
           <label htmlFor="name">Name</label>
@@ -22,10 +84,13 @@ export const SignupPage = ()=>{
             <p>Already have an account? <span style={{color:"blue", cursor:"pointer"}} onClick={()=>{navigate("/login")}}>login here</span></p>
           </div>
           <div className="social">
-            <div style={{cursor:"pointer"}} className="go"><i className="fab fa-google" />  Google</div>
+            <div style={{cursor:"pointer"}} onClick={handleClickGoogle} className="go"><i onClick={handleClickGoogle} className="fab fa-google" />Google</div>
             <div style={{cursor:"pointer"}} className="fb"><i className="fab fa-facebook" />  Github</div>
           </div>
+
         </form>
+        
       </div>
   )
+
 }

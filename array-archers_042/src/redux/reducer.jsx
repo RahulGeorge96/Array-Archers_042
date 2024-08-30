@@ -1,7 +1,7 @@
 import { USERLOGGEDIN } from "./actions";
 
 export const initstate = {
-  isLoggedIn : true
+  isLoggedIn : false
 }
 
 export function Reducer (state = initstate, action){
