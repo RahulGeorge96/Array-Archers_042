@@ -4,14 +4,16 @@ import { useState , useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import { userLoggedin } from "../redux/actions"
+import { useModal } from "../contexts/ModalContext"
 
-export const NavBar = ({ onOpen }) => {
+export const NavBar = () => {
   let [opened, setOpened] = useState(false);
   let [topopened, setToppened] = useState(false);
   const [isBlurred, setIsBlurred] = useState(false);
   let navigate = useNavigate();
   let userlogged = useSelector((state) => state.isLoggedIn);
   let dispatch = useDispatch();
+   const { openModal } = useModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -198,7 +200,7 @@ export const NavBar = ({ onOpen }) => {
           </div>
 
           <div id="contactbutt">
-            <p onClick={onOpen} style={{ cursor: "pointer", color: "white" }}>
+            <p onClick={openModal} style={{ cursor: "pointer" }}>
               Contact Us
             </p>
             <p>About</p>
