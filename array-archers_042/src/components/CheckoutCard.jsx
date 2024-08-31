@@ -11,9 +11,13 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import PaymentForm from "../payment/payment";
+import { useNavigate } from "react-router-dom";
+
 
 export const CheckoutCard = ({ total }) => {
   const [finalAmount, setFinalAmount] = useState(0);
+  let navigate = useNavigate()
 
   useEffect(() => {
     const discount = total * 0.1;
@@ -45,7 +49,6 @@ export const CheckoutCard = ({ total }) => {
             CHECKOUT
           </Text>
 
-          {/* Using Grid for aligned labels and values */}
           <Grid
             templateColumns="auto 1fr"
             gap={0}
@@ -94,6 +97,7 @@ export const CheckoutCard = ({ total }) => {
           color={"white"}
           flex={"1 0 auto"}
           _hover={{ bg: "white", color: "black" }}
+          onClick={()=>navigate("/payment")}
         >
           Checkout
         </Button>

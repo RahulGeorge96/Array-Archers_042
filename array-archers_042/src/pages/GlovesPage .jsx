@@ -1,6 +1,3 @@
-
-
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -21,7 +18,7 @@ const GlovesPage = () => {
           "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/gloves.json"
         );
         const data = await response.json();
-        setGloves(Object.values(data)); // Convert data to an array
+        setGloves(Object.values(data));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching gloves data:", error);
@@ -32,22 +29,21 @@ const GlovesPage = () => {
     fetchData();
   }, []);
 
-  // Slider settings
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Show 5 images at a time
+    slidesToShow: 4,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
-    autoplay: true,  // Enables automatic sliding
-    autoplaySpeed: 2000, 
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3, // Show 4 images on medium screens
+          slidesToShow: 3,
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -55,7 +51,7 @@ const GlovesPage = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1, // Show 2 images on small screens
+          slidesToShow: 1,
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -65,18 +61,17 @@ const GlovesPage = () => {
 
   return (
     <Box w="100%" className="backgroundchange">
-      <Box maxWidth="1360px" margin="0 auto" style={{padding:"0px 30px"}}>
+      <Box maxWidth="1360px" margin="0 auto" style={{ padding: "0px 30px" }}>
         <Heading mb={4} color="white">
           Gloves
         </Heading>
 
         {loading ? (
           <Flex justifyContent="center" alignItems="center" height="50vh">
-          <Spinner size="xl" color="white" />
+            <Spinner size="xl" color="white" />
           </Flex>
         ) : (
           <>
-            {/* Slider for all glove images */}
             <Slider {...settings} className="my-slider">
               {gloves.map((glove) => (
                 <Box key={glove.id} p={4} style={{ margin: "0 5px" }}>
@@ -86,7 +81,7 @@ const GlovesPage = () => {
                       alt={glove.name}
                       style={{
                         width: "100%",
-                        height: "200px", // Set a fixed height
+                        height: "200px",
                         objectFit: "cover",
                         borderRadius: "10px",
                       }}

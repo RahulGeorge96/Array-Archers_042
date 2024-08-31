@@ -17,17 +17,15 @@ export const CartPage = () => {
   const [total, setTotal] = useState(0);
   const [userId, setUserId] = useState(null);
 
-  // Effect to retrieve user ID from localStorage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("currloginuser"));
     if (storedUser && storedUser[0]) {
-      setUserId(storedUser[0][0]); // Set user ID state
+      setUserId(storedUser[0][0]);
     }
   }, []);
 
-  // Effect to fetch cart data from Firebase when userId changes
   useEffect(() => {
-    if (!userId) return; // Ensure userId is available
+    if (!userId) return;
 
     const firebaseUrl = `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}/cart.json`;
 
@@ -35,21 +33,20 @@ export const CartPage = () => {
       .get(firebaseUrl)
       .then((response) => {
         console.log("Retrieved data from Firebase:", response.data);
-        setCartItems(response.data || []); // Handle null response
+        setCartItems(response.data || []);
       })
       .catch((error) => {
         console.error("Error fetching data from Firebase:", error);
       });
-  }, [userId]); // Re-run when userId changes
+  }, [userId]);
 
-  // Effect to calculate total when cartItems change
   useEffect(() => {
     const totalSum = cartItems.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
     setTotal(totalSum);
-  }, [cartItems]); // Re-run when cartItems change
+  }, [cartItems]);
 
   const handleQuantityChange = (index, change) => {
     const updatedItems = [...cartItems];
@@ -112,10 +109,9 @@ export const CartPage = () => {
             gap="10px"
             sx={{
               "@media screen and (min-width: 970px)": {
-                flexDirection: "row", // Apply row direction after 1100px
+                flexDirection: "row",
               },
             }}
-            // justify="space-between"
           >
             <Box flex="1">
               {cartItems.map((item, index) => (
@@ -125,7 +121,6 @@ export const CartPage = () => {
                   direction={{ base: "column", md: "row" }}
                   align="center"
                   gap="10px"
-                  // justify="space-between"
                   mb={6}
                   p={7}
                   backgroundColor="#3e3e3e"

@@ -75,32 +75,26 @@ const ProductDetailsPage = () => {
     if (!product) return;
 
     const storedUser = JSON.parse(localStorage.getItem("currloginuser"));
-    //var cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const userId = storedUser[0][0]; // Example user ID
+    const userId = storedUser[0][0];
     const firebaseUrl = `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}/cart.json`;
 
     axios
       .get(firebaseUrl)
       .then((response) => {
         console.log("Retrieved data from Firebase:", response.data);
-        // Set cart to retrieved data or an empty array if no data exists
         const cart = response.data || [];
 
-        // Find if the product already exists in the cart
         const existingProductIndex = cart.findIndex(
           (item) => item.name === product.name
         );
 
         if (existingProductIndex !== -1) {
-          // If the product exists, update the quantity
           cart[existingProductIndex].quantity += quantity;
         } else {
-          // If the product doesn't exist, add it to the cart
           cart.push({ ...product, quantity });
         }
 
-        // Update the cart in Firebase
         axios
           .patch(
             `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}.json`,
@@ -149,7 +143,6 @@ const ProductDetailsPage = () => {
                 alt={product.name}
                 width={{ base: "85%", md: "70%", lg: "75%" }}
                 height={{ base: "220px", md: "420px", lg: "350px" }}
-                // height="400px"
                 objectFit="cover"
                 borderRadius="10px"
               />

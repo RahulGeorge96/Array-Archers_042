@@ -18,7 +18,7 @@ const JacketsPage = () => {
           "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/jackets.json"
         );
         const data = await response.json();
-        setJackets(Object.values(data)); // Convert data to an array
+        setJackets(Object.values(data));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching jackets data:", error);
@@ -29,22 +29,21 @@ const JacketsPage = () => {
     fetchData();
   }, []);
 
-  // Slider settings
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Show 5 images at a time
+    slidesToShow: 4,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
-    autoplay: true,  // Enables automatic sliding
+    autoplay: true,
     autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3, // Show 4 images on medium screens
+          slidesToShow: 3,
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -52,7 +51,7 @@ const JacketsPage = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1, // Show 2 images on small screens
+          slidesToShow: 1,
           slidesToScroll: 1,
           centerPadding: "0px",
         },
@@ -62,18 +61,22 @@ const JacketsPage = () => {
 
   return (
     <Box w="100%" className="backgroundchange">
-      <Box style={{padding:"0px 30px"}} maxWidth="1360px" margin="0 auto" width="100vw">
+      <Box
+        style={{ padding: "0px 30px" }}
+        maxWidth="1360px"
+        margin="0 auto"
+        width="100vw"
+      >
         <Heading mb={4} color="white">
           Jackets
         </Heading>
 
         {loading ? (
           <Flex justifyContent="center" alignItems="center" height="50vh">
-          <Spinner size="xl" color="white" />
+            <Spinner size="xl" color="white" />
           </Flex>
         ) : (
           <>
-            {/* Slider for all jacket images */}
             <Slider {...settings} className="my-slider">
               {jackets.map((jacket) => (
                 <Box key={jacket.id} p={4} style={{ margin: "0 5px" }}>
@@ -83,7 +86,7 @@ const JacketsPage = () => {
                       alt={jacket.name}
                       style={{
                         width: "100%",
-                        height: "200px", // Set a fixed height
+                        height: "200px",
                         objectFit: "cover",
                         borderRadius: "10px",
                       }}
