@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {useSelector} from "react-redux"
 import "../App.css";
 import {
   Box,
@@ -19,6 +20,7 @@ const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  let userloggedinCurr = useSelector((state)=>state.isLoggedIn)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -188,7 +190,7 @@ const ProductDetailsPage = () => {
               <Button
                 mt={4}
                 bg="#fb6600"
-                onClick={handleAddToCart}
+                onClick={ ()=>{userloggedinCurr ? handleAddToCart() : alert("Please Login First")}}
                 width="auto"
                 color="white"
                 border="none"
