@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
 import "../App.css";
 import {
   Box,
@@ -14,13 +14,14 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import axios from "axios";
 
 const ProductDetailsPage = () => {
   const { productName, id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-  let userloggedinCurr = useSelector((state)=>state.isLoggedIn)
+  let userloggedinCurr = useSelector((state) => state.isLoggedIn);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -73,21 +74,50 @@ const ProductDetailsPage = () => {
   const handleAddToCart = () => {
     if (!product) return;
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const storedUser = JSON.parse(localStorage.getItem("currloginuser"));
+    //var cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    const existingProductIndex = cart.findIndex(
-      (item) => item.name === product.name
-    );
+    const userId = storedUser[0][0]; // Example user ID
+    const firebaseUrl = `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}/cart.json`;
 
-    if (existingProductIndex !== -1) {
-      cart[existingProductIndex].quantity += quantity;
-    } else {
-      cart.push({ ...product, quantity });
-    }
+    axios
+      .get(firebaseUrl)
+      .then((response) => {
+        console.log("Retrieved data from Firebase:", response.data);
+        // Set cart to retrieved data or an empty array if no data exists
+        const cart = response.data || [];
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+        // Find if the product already exists in the cart
+        const existingProductIndex = cart.findIndex(
+          (item) => item.name === product.name
+        );
 
-    alert(`Added ${quantity} of ${product.name} to cart.`);
+        if (existingProductIndex !== -1) {
+          // If the product exists, update the quantity
+          cart[existingProductIndex].quantity += quantity;
+        } else {
+          // If the product doesn't exist, add it to the cart
+          cart.push({ ...product, quantity });
+        }
+
+        // Update the cart in Firebase
+        axios
+          .patch(
+            `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}.json`,
+            { cart: cart }
+          )
+          .then((response) => {
+            console.log("Cart updated in Firebase:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error updating cart in Firebase:", error);
+          });
+
+        alert(`Added ${quantity} of ${product.name} to cart.`);
+      })
+      .catch((error) => {
+        console.error("Error fetching data from Firebase:", error);
+      });
   };
 
   return (
@@ -95,7 +125,7 @@ const ProductDetailsPage = () => {
       <Box p={4} maxWidth="1360px" margin="auto">
         {loading ? (
           <Flex justifyContent="center" alignItems="center" height="50vh">
-          <Spinner size="xl" color="white" />
+            <Spinner size="xl" color="white" />
           </Flex>
         ) : product ? (
           <Flex
@@ -110,7 +140,7 @@ const ProductDetailsPage = () => {
               display="flex"
               alignItems="center"
               justifyContent="center"
-              boxShadow="0 4px 8px rgba(0, 0, 0, 0.8)" 
+              boxShadow="0 4px 8px rgba(0, 0, 0, 0.8)"
               padding="55px 0px"
               borderRadius="10px"
             >
@@ -130,17 +160,53 @@ const ProductDetailsPage = () => {
               </Heading>
               {productName === "bikes" && (
                 <Stack spacing={1}>
-                  <Text fontSize="lg" color="white" letterSpacing="1px" >
-                  <strong>Price : </strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>₹{product.price}</span>
+                  <Text fontSize="lg" color="white" letterSpacing="1px">
+                    <strong>Price : </strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      ₹{product.price}
+                    </span>
                   </Text>
                   <Text fontSize="lg" color="white" letterSpacing="1px">
-                    <strong>Engine : </strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>{product.engine}</span>
-                  </Text>
-                  <Text fontSize="lg" color="white"  letterSpacing="1px">
-                    <strong>Year : </strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>{product.year}</span>
+                    <strong>Engine : </strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      {product.engine}
+                    </span>
                   </Text>
                   <Text fontSize="lg" color="white" letterSpacing="1px">
-                    <strong>Description: </strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>{product.description}</span>
+                    <strong>Year : </strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      {product.year}
+                    </span>
+                  </Text>
+                  <Text fontSize="lg" color="white" letterSpacing="1px">
+                    <strong>Description: </strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      {product.description}
+                    </span>
                   </Text>
                 </Stack>
               )}
@@ -149,22 +215,58 @@ const ProductDetailsPage = () => {
                 productName === "gloves") && (
                 <Stack spacing={1}>
                   <Text fontSize="lg" color="white" letterSpacing="1px">
-                    <strong>Price:</strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>₹{product.price}</span>
+                    <strong>Price:</strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      ₹{product.price}
+                    </span>
                   </Text>
                   <Text fontSize="lg" color="white" letterSpacing="1px">
-                    <strong>Size:</strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>{product.size}</span>
+                    <strong>Size:</strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      {product.size}
+                    </span>
                   </Text>
                   {product.color && (
                     <Text fontSize="lg" color="white" letterSpacing="1px">
-                      <strong>Color:</strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>{product.color}</span>
+                      <strong>Color:</strong>{" "}
+                      <span
+                        style={{
+                          color: "gray",
+                          fontWeight: "500",
+                          fontSize: "17px",
+                        }}
+                      >
+                        {product.color}
+                      </span>
                     </Text>
                   )}
                   <Text fontSize="lg" color="white" letterSpacing="1px">
-                    <strong>Description:</strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"17px"}}>{product.description}</span>
+                    <strong>Description:</strong>{" "}
+                    <span
+                      style={{
+                        color: "gray",
+                        fontWeight: "500",
+                        fontSize: "17px",
+                      }}
+                    >
+                      {product.description}
+                    </span>
                   </Text>
                 </Stack>
               )}
-              <Flex mt={0} align="center" >
+              <Flex mt={0} align="center">
                 <IconButton
                   aria-label="Decrease quantity"
                   icon={<MinusIcon />}
@@ -190,7 +292,11 @@ const ProductDetailsPage = () => {
               <Button
                 mt={4}
                 bg="#fb6600"
-                onClick={ ()=>{userloggedinCurr ? handleAddToCart() : alert("Please Login First")}}
+                onClick={() => {
+                  userloggedinCurr
+                    ? handleAddToCart()
+                    : alert("Please Login First");
+                }}
                 width="auto"
                 color="white"
                 border="none"

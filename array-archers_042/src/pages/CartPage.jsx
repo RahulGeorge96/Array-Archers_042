@@ -10,20 +10,46 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { CheckoutCard } from "../components/CheckoutCard";
+import axios from "axios";
 
 export const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [userId, setUserId] = useState(null);
 
+  // Effect to retrieve user ID from localStorage
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItems(storedCart);
-    const totalSum = storedCart.reduce(
+    const storedUser = JSON.parse(localStorage.getItem("currloginuser"));
+    if (storedUser && storedUser[0]) {
+      setUserId(storedUser[0][0]); // Set user ID state
+    }
+  }, []);
+
+  // Effect to fetch cart data from Firebase when userId changes
+  useEffect(() => {
+    if (!userId) return; // Ensure userId is available
+
+    const firebaseUrl = `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}/cart.json`;
+
+    axios
+      .get(firebaseUrl)
+      .then((response) => {
+        console.log("Retrieved data from Firebase:", response.data);
+        setCartItems(response.data || []); // Handle null response
+      })
+      .catch((error) => {
+        console.error("Error fetching data from Firebase:", error);
+      });
+  }, [userId]); // Re-run when userId changes
+
+  // Effect to calculate total when cartItems change
+  useEffect(() => {
+    const totalSum = cartItems.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
     setTotal(totalSum);
-  }, []); // Removed cartItems from dependency array
+  }, [cartItems]); // Re-run when cartItems change
 
   const handleQuantityChange = (index, change) => {
     const updatedItems = [...cartItems];
@@ -32,54 +58,69 @@ export const CartPage = () => {
       updatedItems[index].quantity + change
     );
     setCartItems(updatedItems);
-    localStorage.setItem("cart", JSON.stringify(updatedItems));
-    
-    // Recalculate the total when the quantity changes
-    const totalSum = updatedItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-    setTotal(totalSum);
+
+    if (userId) {
+      axios
+        .patch(
+          `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}.json`,
+          { cart: updatedItems }
+        )
+        .then((response) => {
+          console.log("Cart updated in Firebase:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error updating cart in Firebase:", error);
+        });
+    }
   };
 
   const handleRemoveFromCart = (index) => {
     const updatedItems = [...cartItems];
     updatedItems.splice(index, 1);
     setCartItems(updatedItems);
-    localStorage.setItem("cart", JSON.stringify(updatedItems));
-    
-    // Recalculate the total when an item is removed
-    const totalSum = updatedItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-    setTotal(totalSum);
+
+    if (userId) {
+      axios
+        .patch(
+          `https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/user/${userId}.json`,
+          { cart: updatedItems }
+        )
+        .then((response) => {
+          console.log("Cart updated in Firebase:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error updating cart in Firebase:", error);
+        });
+    }
   };
 
   return (
     <Box w="100%" className="backgroundchange">
-      <Box   padding="0px 30px" backgroundColor="#303030" maxWidth="1360px" margin="0 auto" borderRadius="md">
+      <Box
+        padding="0px 30px"
+        backgroundColor="#303030"
+        maxWidth="1360px"
+        margin="0 auto"
+        borderRadius="md"
+      >
         <Heading mb={6} color="white" textAlign="center">
           Your Cart
         </Heading>
-        {cartItems.length > 0 ? (
-          <Flex 
+        {cartItems != null && cartItems.length > 0 ? (
+          <Flex
             direction={{ base: "column", lg: "row" }}
             gap="10px"
-
             sx={{
               "@media screen and (min-width: 970px)": {
-                flexDirection: "row",  // Apply row direction after 1100px
+                flexDirection: "row", // Apply row direction after 1100px
               },
             }}
             // justify="space-between"
           >
-            <Box  flex="1"  >
+            <Box flex="1">
               {cartItems.map((item, index) => (
-                <Flex boxShadow={"0 4px 8px rgba(0, 0, 0, 0.8)" 
-
-
-                } 
+                <Flex
+                  boxShadow={"0 4px 8px rgba(0, 0, 0, 0.8)"}
                   key={index}
                   direction={{ base: "column", md: "row" }}
                   align="center"
@@ -107,11 +148,41 @@ export const CartPage = () => {
                     >
                       {item.name}
                     </Text>
-                    <Text fontWeight={500} fontSize="lg" color="white" letterSpacing=".5px">
-                      Price : <span style={{ color: 'gray' , fontWeight:"500", fontSize:"18px", marginLeft:"45px"}}>₹{item.price}</span>
+                    <Text
+                      fontWeight={500}
+                      fontSize="lg"
+                      color="white"
+                      letterSpacing=".5px"
+                    >
+                      Price :{" "}
+                      <span
+                        style={{
+                          color: "gray",
+                          fontWeight: "500",
+                          fontSize: "18px",
+                          marginLeft: "45px",
+                        }}
+                      >
+                        ₹{item.price}
+                      </span>
                     </Text>
-                    <Text fontWeight={500} fontSize="lg" color="white" letterSpacing=".5px">
-                      <strong>Quantity : </strong> <span style={{ color: 'gray' , fontWeight:"500", fontSize:"18px", marginLeft:"10px"}}>{item.quantity}</span>
+                    <Text
+                      fontWeight={500}
+                      fontSize="lg"
+                      color="white"
+                      letterSpacing=".5px"
+                    >
+                      <strong>Quantity : </strong>{" "}
+                      <span
+                        style={{
+                          color: "gray",
+                          fontWeight: "500",
+                          fontSize: "18px",
+                          marginLeft: "10px",
+                        }}
+                      >
+                        {item.quantity}
+                      </span>
                     </Text>
                     <Flex mt={-3} align="center">
                       <IconButton
@@ -165,7 +236,9 @@ export const CartPage = () => {
             </Box>
           </Flex>
         ) : (
-          <Text color="white" textAlign="center">Your cart is empty</Text>
+          <Text color="white" textAlign="center">
+            Your cart is empty
+          </Text>
         )}
       </Box>
     </Box>
