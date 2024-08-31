@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Box, Image, Text, Stack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -9,7 +7,7 @@ const ProductCard = ({ product, productName }) => {
     <Link to={`/products/${productName}/${product.id}`}>
       <Box
         borderWidth="1px"
-        borderColor="transparent" // Set borderColor to transparent
+        borderColor="transparent"
         borderRadius="lg"
         overflow="hidden"
         backgroundColor="#313131"
@@ -18,7 +16,7 @@ const ProductCard = ({ product, productName }) => {
         flexDirection="column"
         justifyContent="center"
         boxShadow={"0 0 8px grey"}
-        _hover={{ boxShadow: "0 0 8px grey" }} 
+        _hover={{ boxShadow: "0 0 8px grey" }}
         paddingTop="15px"
       >
         <Image
@@ -27,7 +25,6 @@ const ProductCard = ({ product, productName }) => {
           boxSize="300px"
           mx="auto"
           borderRadius="8px"
-          
         />
         <Stack p={4}>
           <Text fontWeight="bold" fontSize="xl" color="white">
@@ -41,24 +38,3 @@ const ProductCard = ({ product, productName }) => {
 };
 
 export default ProductCard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

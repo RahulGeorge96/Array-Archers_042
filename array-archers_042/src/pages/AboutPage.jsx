@@ -10,10 +10,9 @@ export const AboutPage = () => {
         marginTop: "150px",
         border: "1px solid black",
         maxWidth: "1360px",
-        margin: "0 auto", // Center the container
-        //backgroundColor: "#303030",
+        margin: "0 auto",
+        backgroundColor: "#303030",
         height: "100%",
-        backgroundColor: "blue",
       }}
     >
       <div className="About_grid">

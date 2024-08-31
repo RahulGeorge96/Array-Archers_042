@@ -12,13 +12,10 @@
   bottom: -40px;
 }
 
-/*start:  styles for about page */
-
-/* Container to restrict max width */
 .AboutPageContainer {
   max-width: 1360px;
-  margin: 0 auto; /* Center the container */
-  padding: 0 15px; /* Optional padding for spacing */
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .About_grid {
@@ -26,25 +23,25 @@
   grid-template-areas:
     "a1 a1 a2 a3"
     "a1 a1 a4 a5";
-  grid-template-columns: repeat(4, 1fr); /* Ensures equal column widths */
+  grid-template-columns: repeat(4, 1fr);
 
   width: 100%;
-  max-width: 100%; /* Ensures the grid doesn't exceed the container's width */
-  height: auto; /* Adjust height to fit content */
+  max-width: 100%;
+  height: auto;
   gap: 1vw;
   margin: auto;
   padding-top: 2vw;
   padding-bottom: 2vw;
   padding-right: 1vw;
   background-color: #414141;
-  overflow: hidden; /* Prevent content overflow */
+  overflow: hidden;
   margin-top: 8vmin;
 }
 
 .About_grid > div {
-  width: 100%; /* Full width of the grid cell */
+  width: 100%;
   color: white;
-  overflow-wrap: break-word; /* Prevent text overflow */
+  overflow-wrap: break-word;
 }
 
 .About_grid > div:nth-child(1) {
@@ -68,13 +65,13 @@
 }
 
 .About_grid_div {
-  height: 100%; /* Allow divs to grow with content */
+  height: 100%;
 }
 
 img {
   width: 100%;
   height: auto;
-  object-fit: cover; /* Ensures the image covers its container */
+  object-fit: cover;
 }
 
 .About_grid_div > p > p {
@@ -87,14 +84,13 @@ img {
   margin-top: 3vw;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
   .About_grid {
     grid-template-areas:
       "a1 a1"
       "a2 a3"
       "a4 a5";
-    grid-template-columns: repeat(2, 1fr); /* Two-column layout */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -106,17 +102,17 @@ img {
       "a3"
       "a4"
       "a5";
-    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-columns: 1fr;
     gap: 2vw;
     padding: 4vw 2vw;
   }
 
   .About_grid > div {
-    width: 100%; /* Full width for each item */
+    width: 100%;
   }
 
   .About_grid_div > p > p {
-    font-size: 12px; /* Adjust text size for readability */
+    font-size: 12px;
     margin-top: 5vw;
   }
 }
@@ -128,12 +124,10 @@ img {
   }
 
   .About_grid > div {
-    margin-bottom: 2vw; /* Add spacing between stacked items */
+    margin-bottom: 2vw;
   }
 
   .About_grid_div > p > p {
-    font-size: 14px; /* Further adjust text size for small screens */
+    font-size: 14px;
   }
 }
-
-/*end:  styles for about page */

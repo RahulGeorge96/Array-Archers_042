@@ -74,6 +74,17 @@ export const NavBar = () => {
     setToppened(!topopened);
   }
 
+  function handleAbout (){
+    navigate("/about")
+    setOpened(!opened)
+  }
+
+
+  function handleContact (){
+    setOpened(!opened)
+    openModal()
+  }
+
   return (
     <div className={`maincontainer ${isBlurred ? "blur" : ""}`}>
       <div className="navbarcontainer">
@@ -98,7 +109,6 @@ export const NavBar = () => {
             </div>
           </div>
           <div id="linksofcomp" className="linksofcomp">
-            <p>Wishlist</p>
             <p
               onClick={() => {
                 navigate("/cart");
@@ -141,13 +151,6 @@ export const NavBar = () => {
               src={logoimage}
               className="navbarlogo"
             />
-            <p
-              onClick={() => {
-                setToppened(!topopened);
-              }}
-            >
-              Wishlist
-            </p>
             <p onClick={handleCart}>Cart</p>
             <p onClick={handleSignin}>{userlogged ? "Sign Out" : "Sign in"}</p>
           </div>
@@ -203,7 +206,7 @@ export const NavBar = () => {
             <p onClick={openModal} style={{ cursor: "pointer" }}>
               Contact Us
             </p>
-            <p>About</p>
+            <p onClick={()=>navigate("/about")}>About</p>
           </div>
 
           <div id="bergmenu" className="bergmenu">
@@ -237,16 +240,12 @@ export const NavBar = () => {
             <p onClick={handleHelmets}>Helmets</p>
             <p onClick={handleGloves}>Gloves</p>
             <p
-              onClick={() => {
-                setOpened(!opened);
-              }}
+              onClick={handleContact}
             >
               Contact Us
             </p>
             <p
-              onClick={() => {
-                setOpened(!opened);
-              }}
+              onClick={handleAbout}
             >
               About
             </p>

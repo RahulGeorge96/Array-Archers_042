@@ -20,9 +20,6 @@ export const HeroSection = ()=>{
       <div className="bottomborder"></div>
     </div>
 
-
-
-
     <div className="forthefirsttextandp">
       <div>
         <h2>MODEL</h2>

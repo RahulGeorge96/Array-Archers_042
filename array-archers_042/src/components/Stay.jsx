@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import aboutImage4 from "../assets/stayBike1.png";
+import aboutImage4 from "../assets/aboutBike4.png";
 export const Stay = () => {
   return (
     <div
@@ -13,10 +13,9 @@ export const Stay = () => {
         marginBottom: "4vmin",
         padding: "4vmin",
         maxWidth: "1360px",
-        flexWrap: "wrap", // Enable wrapping for responsiveness
+        flexWrap: "wrap",
       }}
     >
-      {/* Image Container */}
       <div
         style={{
           width: "100%",
@@ -32,7 +31,6 @@ export const Stay = () => {
         />
       </div>
 
-      {/* Content Container */}
       <div
         style={{
           width: "100%",
@@ -41,28 +39,26 @@ export const Stay = () => {
           flexDirection: "column",
           justifyContent: "space-around",
           gap: "2vw",
-          flexBasis: "50%", // Allow content to take more space when needed
+          flexBasis: "50%",
           flexGrow: 1,
           marginBottom: "2vw",
         }}
       >
-        {/* Heading */}
         <h1
           style={{
             textAlign: "center",
             fontWeight: "bold",
-            fontSize: "2.5rem", // Adjusted font size for better responsiveness
+            fontSize: "2.5rem",
           }}
         >
           STAY IN THE KNOW
         </h1>
 
-        {/* Paragraph */}
         <div>
           <p
             style={{
               textAlign: "left",
-              fontSize: "0.9rem", // Adjusted font size for better readability
+              fontSize: "0.9rem",
             }}
           >
             Subscribe to receive notifications about the latest news, events,
@@ -70,7 +66,6 @@ export const Stay = () => {
           </p>
         </div>
 
-        {/* Input Field */}
         <div>
           <input
             style={{
@@ -79,14 +74,13 @@ export const Stay = () => {
               border: "1px solid grey",
               backgroundColor: "#414141",
               padding: "0.5rem",
-              fontSize: "0.8rem", // Adjusted font size for better readability
+              fontSize: "0.8rem",
             }}
             type="text"
             placeholder="Email"
           />
         </div>
 
-        {/* Checkbox and Label */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <input
             style={{
@@ -100,7 +94,7 @@ export const Stay = () => {
           <label
             htmlFor="checkbox1"
             style={{
-              fontSize: "0.8rem", // Adjusted font size for better readability
+              fontSize: "0.8rem",
             }}
           >
             I have read the privacy policy and I agree to the processing of the
@@ -108,7 +102,6 @@ export const Stay = () => {
           </label>
         </div>
 
-        {/* Button */}
         <div>
           <Button
             w="100%"

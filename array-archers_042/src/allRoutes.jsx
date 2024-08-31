@@ -10,6 +10,8 @@ import { CartPage } from "./pages/CartPage";
 import { PrivateRoute } from "./privateroutes/loginprivate";
 import { LoginPage } from "./components/loginPage";
 import { SignupPage } from "./components/signupPage";
+import PaymentForm from "./payment/payment";
+import { AboutPage } from "./pages/AboutPage";
 
 export const AllRoutes = ()=>{
   return (
@@ -25,6 +27,9 @@ export const AllRoutes = ()=>{
               <Route path="/products/:productName/:id" element={<ProductDetailsPage />}/>
               <Route path="/login" element={<LoginPage/>}/>
               <Route path="/signup" element={<SignupPage/>}/>
+              <Route path="*" element={<LandingPage/>}/>
+              <Route path="/payment" element={<PaymentForm/>}/>
+              <Route path="/about" element={<AboutPage/>}/>
         </Routes>
       </ChakraProvider>
     </>

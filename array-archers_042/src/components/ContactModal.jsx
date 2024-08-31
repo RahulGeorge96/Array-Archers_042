@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import {
   Button,
@@ -18,7 +16,7 @@ import {
   Flex,
   Divider,
   Box,
-  useToast, // Import the useToast hook
+  useToast,
 } from "@chakra-ui/react";
 import logoimage from "../assets/brandlogo.png";
 import { useModal } from "../contexts/ModalContext";
@@ -29,7 +27,7 @@ const ContactModal = () => {
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [message, setMessage] = useState("");
-  const toast = useToast(); // Initialize the toast hook
+  const toast = useToast();
 
   const handleSubmit = async () => {
     const contactDetails = {
@@ -172,4 +170,3 @@ const ContactModal = () => {
 };
 
 export default ContactModal;
-
