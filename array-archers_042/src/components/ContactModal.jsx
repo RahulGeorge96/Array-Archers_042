@@ -20,17 +20,15 @@ import {
   Flex,
   Divider,
 } from "@chakra-ui/react";
-import logoimage from "./assets/brandlogo.png";
+import logoimage from "../assets/brandlogo.png";
 
-const ContactModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const ContactModal = ({ isOpen, onClose }) => {
+
 
   return (
     <>
-      <Button onClick={onOpen}>Contact Us</Button>
-
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay bg="transparent" />
+        <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
         <ModalContent bg="#3d3d3d" color="white">
           <ModalHeader
             display="flex"
@@ -77,13 +75,13 @@ const ContactModal = () => {
               <Input type="tel" placeholder="Enter your mobile number" />
             </FormControl>
 
-            <FormControl mb={4}>
+            <FormControl>
               <FormLabel>Message</FormLabel>
               <Textarea placeholder="Write your message here..." />
             </FormControl>
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter pt={-4}>
             <Button colorScheme="orange" mr={3} onClick={onClose}>
               Send Message
             </Button>
