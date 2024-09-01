@@ -2,12 +2,13 @@
 import { initializeApp } from "firebase/app";
 import {getAuth,GoogleAuthProvider} from "firebase/auth"
 const firebaseConfig = {
-  apiKey: "AIzaSyAmj1TkxknrQRXo9D2i3Ukbyxc6vj2BDHc",
-  authDomain: "harley-auth-ac2d9.firebaseapp.com",
-  projectId: "harley-auth-ac2d9",
-  storageBucket: "harley-auth-ac2d9.appspot.com",
-  messagingSenderId: "619190042180",
-  appId: "1:619190042180:web:5525ecf809000a11764611"
+  apiKey: "AIzaSyAqpUj-TMX6Ar6gSGsqaaTeUSXaeMrCLuw",
+  authDomain: "bike-enthusiast.firebaseapp.com",
+  databaseURL: "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "bike-enthusiast",
+  storageBucket: "bike-enthusiast.appspot.com",
+  messagingSenderId: "67362709095",
+  appId: "1:67362709095:web:5e9e3e72de02fb7dc17ec2"
 };
 
 const app = initializeApp(firebaseConfig);
