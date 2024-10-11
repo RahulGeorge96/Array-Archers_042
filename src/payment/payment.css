@@ -1,5 +1,5 @@
 .popforpaymentsucees h1 {
-  color: #88B04B;
+  color: #88b04b;
   font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
   font-weight: 900;
   font-size: 40px;
@@ -8,34 +8,33 @@
 .popforpaymentsucees p {
   color: gray;
   font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-  font-size:20px;
+  font-size: 20px;
   margin: 0;
 }
 
 .popforpaymentsucees i {
-color: #9ABC66;
-font-size: 100px;
-line-height: 200px;
-margin-left:-15px;
+  color: #9abc66;
+  font-size: 100px;
+  line-height: 200px;
+  margin-left: -15px;
 }
 .popforpaymentsucees .cardsssss {
-padding: 60px;
-border-radius: 10px;
-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-display: inline-block;
-margin: 0 auto;
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+  display: inline-block;
+  margin: 0 auto;
 }
 
-.popforpaymentsucees{
+.popforpaymentsucees {
   padding: 10px;
 }
 
-#popforpaymentsucees{
+#popforpaymentsucees {
   display: none;
 }
 
-
-.containerssssss{
+.containerssssss {
   height: 90vh;
   width: 98.9vw;
 }
@@ -46,7 +45,7 @@ margin: 0 auto;
   width: 425px;
   margin: 50px auto;
   border-radius: 10px;
-  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: -40px;
   position: relative;
@@ -96,7 +95,7 @@ margin: 0 auto;
 .input-group select:focus {
   border-color: #a0d2eb;
   outline: none;
-  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
 }
 
 .card-number-input {
@@ -170,4 +169,3 @@ margin: 0 auto;
     margin-bottom: 25px;
   }
 }
-

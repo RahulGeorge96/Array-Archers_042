@@ -90,8 +90,12 @@ const ContactModal = () => {
   return (
     <Modal isOpen={isModalOpen} onClose={closeModal}>
       <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
-      <ModalContent p="4"
-    m={{ base: '8px', md: '32px' }}  bg="#3d3d3d" color="white">
+      <ModalContent
+        p="4"
+        m={{ base: "8px", md: "32px" }}
+        bg="#3d3d3d"
+        color="white"
+      >
         <ModalHeader display="flex" flexDirection="column" alignItems="center">
           <Image
             src={logoimage}

@@ -24,9 +24,7 @@ const BikesPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/bikes.json"
-        );
+        const response = await fetch("http://localhost:5000/bikes");
         const data = await response.json();
         setBikes(data);
         setFilteredBikes(data);

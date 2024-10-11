@@ -1,7 +1,7 @@
-export const USERLOGGEDIN = "USERLOGGEDIN"
+export const USERLOGGEDIN = "USERLOGGEDIN";
 
-export const userLoggedin = ()=>{
-  return{
-    type : USERLOGGEDIN
-  }
-}
+export const userLoggedin = () => {
+  return {
+    type: USERLOGGEDIN,
+  };
+};
