@@ -46,7 +46,7 @@ Start the server
 
 **Frontend:** HTML, CSS, JSX, REACT   
 *libraries:* Redux, ChakraUI, axios, React-router-dom, react-icons, firebase, slick-carousel
-**Backend:** Firebase, Google API
+**Backend:** Node.js, Mongodb, Express.js, Firebase, Google API
 
 
 # Project Type
