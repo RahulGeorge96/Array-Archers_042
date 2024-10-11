@@ -45,7 +45,7 @@ Start the server
 ## Tech Stack
 
 **Frontend:** HTML, CSS, JSX, REACT   
-*libraries:* Redux, ChakraUI, axios, React-router-dom, react-icons, firebase, slick-carousel
+*libraries:* Redux, ChakraUI, axios, React-router-dom, react-icons, firebase, slick-carousel <br/>
 **Backend:** Node.js, Mongodb, Express.js, Firebase, Google API
 
 
