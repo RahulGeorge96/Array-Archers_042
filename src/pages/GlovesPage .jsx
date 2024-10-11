@@ -14,7 +14,7 @@ const GlovesPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/gloves");
+        const response = await fetch("https://harley-davidson-fexq.onrender.com/gloves");
         const data = await response.json();
         setGloves(Object.values(data));
         setLoading(false);

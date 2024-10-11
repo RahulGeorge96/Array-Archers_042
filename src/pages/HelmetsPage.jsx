@@ -14,7 +14,7 @@ const HelmetsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/helmets");
+        const response = await fetch("https://harley-davidson-fexq.onrender.com/helmets");
         const data = await response.json();
         setHelmets(data);
         setLoading(false);

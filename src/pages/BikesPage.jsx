@@ -24,7 +24,7 @@ const BikesPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/bikes");
+        const response = await fetch("https://harley-davidson-fexq.onrender.com/bikes");
         const data = await response.json();
         setBikes(data);
         setFilteredBikes(data);
