@@ -14,10 +14,9 @@ import { useEffect, useState } from "react";
 import PaymentForm from "../payment/payment";
 import { useNavigate } from "react-router-dom";
 
-
 export const CheckoutCard = ({ total }) => {
   const [finalAmount, setFinalAmount] = useState(0);
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   useEffect(() => {
     const discount = total * 0.1;
@@ -73,22 +72,49 @@ export const CheckoutCard = ({ total }) => {
               ₹{total}
             </Text>
 
-            <Text letterSpacing=".5px" fontWeight={500} fontSize={"lg"} textAlign="left">
+            <Text
+              letterSpacing=".5px"
+              fontWeight={500}
+              fontSize={"lg"}
+              textAlign="left"
+            >
               Discount:
             </Text>
-            <Text color="gray" fontWeight={500} fontSize="20px" textAlign="right">
+            <Text
+              color="gray"
+              fontWeight={500}
+              fontSize="20px"
+              textAlign="right"
+            >
               10%
             </Text>
 
-            <Text letterSpacing=".5px" fontWeight={500} fontSize="24px"  textAlign="left">
+            <Text
+              letterSpacing=".5px"
+              fontWeight={500}
+              fontSize="24px"
+              textAlign="left"
+            >
               Final Price:
             </Text>
-            <Text color="gray" fontWeight={500} fontSize="22px"textAlign="right">
-            ₹{finalAmount}
+            <Text
+              color="gray"
+              fontWeight={500}
+              fontSize="22px"
+              textAlign="right"
+            >
+              ₹{finalAmount}
             </Text>
           </Grid>
         </Stack>
-        <div style={{height:"2px", width:"100%", backgroundColor:"yellow", marginTop:"35px"}}></div>
+        <div
+          style={{
+            height: "2px",
+            width: "100%",
+            backgroundColor: "yellow",
+            marginTop: "35px",
+          }}
+        ></div>
         <Button
           mt={6}
           w="100%"
@@ -97,7 +123,7 @@ export const CheckoutCard = ({ total }) => {
           color={"white"}
           flex={"1 0 auto"}
           _hover={{ bg: "white", color: "black" }}
-          onClick={()=>navigate("/payment")}
+          onClick={() => navigate("/payment")}
         >
           Checkout
         </Button>

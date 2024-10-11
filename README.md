@@ -53,7 +53,7 @@ Start the server
 - Frontend | Backend
 
 # Deployed Link
-- https://harley-davidson-six.vercel.app
+- https://harley-davidson-fan.vercel.app/
 
 # Presentation Link
 - https://youtu.be/wukZ4Z77_C4

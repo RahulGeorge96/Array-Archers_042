@@ -1,10 +1,10 @@
-import "./navBar.css"
-import logoimage from "../assets/brandlogo.png"
-import { useState , useEffect} from "react"
-import { useNavigate } from "react-router-dom"
-import {useDispatch, useSelector} from "react-redux"
-import { userLoggedin } from "../redux/actions"
-import { useModal } from "../contexts/ModalContext"
+import "./navBar.css";
+import logoimage from "../assets/brandlogo.png";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLoggedin } from "../redux/actions";
+import { useModal } from "../contexts/ModalContext";
 
 export const NavBar = () => {
   let [opened, setOpened] = useState(false);
@@ -13,7 +13,7 @@ export const NavBar = () => {
   let navigate = useNavigate();
   let userlogged = useSelector((state) => state.isLoggedIn);
   let dispatch = useDispatch();
-   const { openModal } = useModal();
+  const { openModal } = useModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,15 +74,14 @@ export const NavBar = () => {
     setToppened(!topopened);
   }
 
-  function handleAbout (){
-    navigate("/about")
-    setOpened(!opened)
+  function handleAbout() {
+    navigate("/about");
+    setOpened(!opened);
   }
 
-
-  function handleContact (){
-    setOpened(!opened)
-    openModal()
+  function handleContact() {
+    setOpened(!opened);
+    openModal();
   }
 
   return (
@@ -206,7 +205,7 @@ export const NavBar = () => {
             <p onClick={openModal} style={{ cursor: "pointer" }}>
               Contact Us
             </p>
-            <p onClick={()=>navigate("/about")}>About</p>
+            <p onClick={() => navigate("/about")}>About</p>
           </div>
 
           <div id="bergmenu" className="bergmenu">
@@ -239,16 +238,8 @@ export const NavBar = () => {
             <p onClick={handleJackest}>Jackets</p>
             <p onClick={handleHelmets}>Helmets</p>
             <p onClick={handleGloves}>Gloves</p>
-            <p
-              onClick={handleContact}
-            >
-              Contact Us
-            </p>
-            <p
-              onClick={handleAbout}
-            >
-              About
-            </p>
+            <p onClick={handleContact}>Contact Us</p>
+            <p onClick={handleAbout}>About</p>
           </div>
         </div>
 

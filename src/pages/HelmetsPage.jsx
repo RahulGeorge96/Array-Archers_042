@@ -14,9 +14,7 @@ const HelmetsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/helmets.json"
-        );
+        const response = await fetch("http://localhost:5000/helmets");
         const data = await response.json();
         setHelmets(data);
         setLoading(false);

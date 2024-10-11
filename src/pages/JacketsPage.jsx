@@ -14,9 +14,7 @@ const JacketsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://bike-enthusiast-default-rtdb.asia-southeast1.firebasedatabase.app/jackets.json"
-        );
+        const response = await fetch("http://localhost:5000/jackets");
         const data = await response.json();
         setJackets(Object.values(data));
         setLoading(false);
